@@ -1,0 +1,65 @@
+{% extends 'store/main.html' %}
+{% load static %}
+
+{% block content %}
+
+
+<div class="container">
+    <main class="pt-5">
+        <div class="row g-3">
+            <div class="col-md-5 col-lg-5 order-md-first bg-light">
+                <img class="img-fluid mx-auto d-block" width="400px" alt="Responsive image" src="{{ product.imageURL }}">
+            </div>
+            <div class="col-md-7 col-lg-7 ps-md-3 ps-lg-5">
+                <h1 class="mb-0 h3">{{ product.name }}</h1><br>
+                <p><span class="lead">Author: {{ product.author }}</span></p>
+                <p><span class="lead">Category: {{ product.category }}</span></p>
+                <div class="border">
+                    <div class="col border-bottom">
+                        <div class="row p-3">
+                            <div class="col-6">Hardback</div>
+                            <div class="col-6 text-end"><span class="h4 fw-bold">${{ product.price |floatformat:2}}</span></div>
+                        </div>
+                    </div>
+                    <div class="col">
+                        <div class="row p-3">
+                            {% if user.is_authenticated %}
+                                <button data-product={{product.id}} data-action="add"  class="btn btn-outline-secondary add-btn update-cart">Add to Cart</button> 
+                          {% else %}
+                            <a href="{% url 'login' %}"class="btn btn-outline-secondary" >Login to Add to Cart</a>
+                          {% endif %}
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+</div>
+{% endblock content %}
+
+
+
+
+<!-- breadcrumbs??-->
+{% comment %} <section class="py-4">
+    <div class="container">
+        <nav>
+        <div class="row text-center">
+
+            <div class="box-element product">
+            <img class="img-thumbnail" style="height:293px;" src="{{ product.imageURL }}"><br><br>
+            <h6>Title: {{product.name}}<br>
+                Autor: {{product.author}}<br>
+                Category: {{product.category}}<br>
+            </h6>
+            <hr>
+    
+            <button data-product={{product.id}} data-action="add"  class="btn btn-outline-secondary add-btn update-cart">Add to Cart</button> 
+            
+            
+            </div>
+        </div>
+        {% endfor %}
+    </div> {% endcomment %}

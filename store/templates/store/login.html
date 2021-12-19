@@ -1,0 +1,18 @@
+{% extends 'store/main.html' %}
+{% load static %}
+{% block content %}
+
+
+<style>
+     
+</style>
+
+
+<form method="POST">
+    {% csrf_token %}
+    {{ form }}
+    <button>Submit</button>
+</form>
+
+
+{% endblock content%}
