@@ -13,6 +13,6 @@ with open('books.csv') as f:
         print(row)
         category = Category.objects.get_or_create(name=row['Category'])
         author = Author.objects.get_or_create(name=row['Author'])
-        product = Product.objects.get_or_create(name=row['Title'],price=row['Price'],author=author, category=category)
+        product = Product.objects.get_or_create(name=row['Name'],price=row['Price'],author=author, category=category)
         
         
