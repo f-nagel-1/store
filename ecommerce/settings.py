@@ -86,15 +86,7 @@ WSGI_APPLICATION = 'ecommerce.wsgi.application'
 #     }
 # }
 
-DATABASES = {
-    'default': {
-        'ENGINE': local_settings.database_engine,
-        'NAME': local_settings.database_name,
-        'USER': local_settings.database_user,
-        'PASSWORD': local_settings.database_password,
-        'HOST': local_settings.database_host,
-    }
-}
+
 
 
 # Password validation
