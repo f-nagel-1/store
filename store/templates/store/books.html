@@ -1,12 +1,26 @@
 {% extends 'store/main.html' %}
 {% load static %}
 {% block content %}
+
+<style>
+.center {
+        display: block;
+        margin-left: auto;
+        margin-right: auto;
+
+}
+
+.btn {
+    min-width: 100px;
+}
+
+</style>
     <div class="row">
         {% for product in products %}
 	    <div class="col-lg-4">
             
             <div class="box-element product">
-            <img class="img-thumbnail" style="height:293px;" src="{{ product.imageURL }}"><br><br>
+            <img class="img-thumbnail center" style="height:293px;" src="{{ product.imageURL }}"><br>
             <h6>Title: {{product.name}}<br>
                 Autor: {{product.author}}</h6>
             <hr>

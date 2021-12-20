@@ -107,9 +107,8 @@ def books(request):
 
 
 def product(request, obj_id):
-     
-    product_objects = Product.objects.get(id=obj_id)
-    return render(request,'store/product.html',{'product': product_objects})
+    product = Product.objects.get(id=obj_id)
+    return render(request,'store/product.html',{'product': product})
 
 def about(request):
      return render(request, 'store/about.html')

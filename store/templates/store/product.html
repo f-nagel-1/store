@@ -26,7 +26,7 @@
                             {% if user.is_authenticated %}
                                 <button data-product={{product.id}} data-action="add"  class="btn btn-outline-secondary add-btn update-cart">Add to Cart</button> 
                           {% else %}
-                            <a href="{% url 'login' %}"class="btn btn-outline-secondary" >Login to Add to Cart</a>
+                            <a href="{% url 'login' %}?next={{ request.path }}"class="btn btn-outline-secondary" >Login to Add to Cart</a>
                           {% endif %}
 
                         </div>

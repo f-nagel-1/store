@@ -2,6 +2,78 @@
 {% load static %}
 {% block content %}
      
-<div>about us</div>
+<style>
+
+    body {
+      background-image: url("/static/images/about.jpeg");
+      background-repeat:no-repeat;
+      background-size:cover;
+      
+    }
+    
+
+    .contact-form {
+        background: #fff;
+        box-shadow: 0 23px 73px -17px rgba(0, 0, 0, 0.16);
+        display: flex;
+        flex-wrap: wrap;
+        height: 500px;
+        width: 90%;
+    }
+    
+    .contact-form-box__left {
+        background: #292b2c; /* fallback for old browsers */
+        background-position: center;
+        background-repeat: no-repeat;
+        background-size: cover;
+        color: #fff;
+        padding: 30px 30px 80px 30px;
+        width: 100%;
+        border-radius: 5px;
+        position: relative;
+    }
+    
+    @media (min-width: 993px) {
+        .contact-form-box__left {
+          width: 350px;
+          height: 500px;
+          transform: scale(1.05);
+        }
+      }
+    
+    @media (min-width: 993px) {
+      .contact-form-box__right {
+        padding: 30px;
+        height: 600px;
+        width: calc(90% - 350px);
+     }
+    }
+    </style>
+    
+    
+    <body>
+    <section class="section-100">
+      <div class="container">
+    <br>
+        <div class="contact-form">
+          <div class="contact-form-box__left">
+            <div style="font-size:200%;">ABOUT US</div>
+ 
+           
+     
+          </div>
+          <div class="contact-form-box__right">      
+            
+            <div>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Omnis qui tenetur praesentium laboriosam voluptas hic voluptatum delectus culpa consequatur repellendus veniam, nulla deserunt neque obcaecati explicabo accusantium ipsa, consequuntur officia. Lorem ipsum dolor, sit amet consectetur adipisicing elit. Omnis qui tenetur praesentium laboriosam voluptas hic voluptatum delectus culpa consequatur repellendus veniam, nulla deserunt neque obcaecati explicabo accusantium ipsa, consequuntur officia.</div><br>
+
+            <div>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Omnis qui tenetur praesentium laboriosam voluptas hic voluptatum delectus culpa consequatur repellendus veniam, nulla deserunt neque obcaecati explicabo accusantium ipsa, consequuntur officia. Lorem ipsum dolor, sit amet consectetur adipisicing elit. Omnis qui tenetur praesentium laboriosam voluptas hic voluptatum delectus culpa consequatur repellendus veniam, nulla deserunt neque obcaecati explicabo accusantium ipsa, consequuntur officia.</div>
+          </div>
+        </div>
+      </div>
+    </section>
+    </body>
+    </html>
+    
+
 
 {% endblock content %}
