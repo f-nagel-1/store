@@ -1,7 +1,10 @@
 {% extends 'store/main.html' %}
 {% load static %}
 {% block content %}
-     
+    
+<div>
+<form action="{% url 'success' %}" method="POST">
+    {% csrf_token %}
 <div class="row">
 	<div class="col-lg-6">
 		<div class="box-element" id="form-wrapper">
@@ -57,9 +60,11 @@
             <h5>Total:  ${{order.get_cart_total|floatformat:2}}</h5>
             <br>
             <div class="d-grid gap-2">
-                <button class="btn btn-success clear-cart" type="submit" input id="form-button" onclick="window.location.href='success';">Submit Order</button>
+                <button class="btn btn-success" type="submit" input id="form-button" onclick="window.location.href='success';">Submit Order</button>
               </div>
         </div>
 	</div>
+</div>
+</form>
 </div>
 {% endblock content %}

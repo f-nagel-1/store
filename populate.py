@@ -11,8 +11,11 @@ with open('books.csv') as f:
     reader = csv.DictReader(f, delimiter=';')
     for row in reader:
         print(row)
-        category = Category.objects.get_or_create(name=row['Category'])
-        author = Author.objects.get_or_create(name=row['Author'])
-        product = Product.objects.get_or_create(name=row['Name'],price=row['Price'],author=author, category=category)
+        category = Category.objects.get_or_create(name=row['Category'])[0]
+        author = Author.objects.get_or_create(name=row['Author'])[0]
+        product = Product.objects.get_or_create(name=row['Name'],
+        price=row['Price'],
+        author=author, 
+        category=category)
         
         

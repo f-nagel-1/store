@@ -3,6 +3,7 @@ from django.http import JsonResponse
 import json
 import datetime
 from .models import *
+import random
 
 
 def store(request):
@@ -117,4 +118,41 @@ def contact(request):
      return render(request, 'store/contact.html')
 
 def success(request):
+     if request.method == 'POST':
+          neworder = Order()
+          neworder.customer = request.user.customer
+          neworder.address = request.POST.get('address')
+          neworder.city = request.POST.get('city')
+          neworder.name = request.POST.get('name')
+          neworder.complete = True
+
+          cart = Order.objects.filter(customer=request.user.customer)
+         
+          # total = 0
+          # for item in cart:
+          #     total = total + item.product.price * item.product.quantity
+
+          trackno = str(random.randint(11111,99999))
+          while Order.objects.filter(transaction_id=trackno) is None:
+               trackno = str(random.randint(11111,99999))
+          neworder.transaction_id = trackno
+
+          neworder.save()
+
+          # Order.objects.filter(customer=request.user.customer).delete()
+         
      return render(request, 'store/checkout/success.html')
+
+
+# def place(request):
+# 	transaction_id = datetime.datetime.now().timestamp()
+# 	data = json.loads(request.body)
+# 	customer = request.user.customer
+# 	order, created = Order.objects.get_or_create(customer=customer, complete=True)
+# 	total = float(data['form']['total'])
+# 	order.transaction_id = transaction_id
+# 	order.save()
+
+# 	return JsonResponse('Payment submitted..', safe=False)
+
+
