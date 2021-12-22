@@ -144,7 +144,7 @@ def success(request):
                trackno = str(random.randint(11111,99999))
           neworder.transaction_id = trackno
 
-          Order.objects.filter(transaction_id="null").delete()
+          Order.objects.filter(transaction_id=None).delete()
           neworder.save()
 
           # Order.objects.filter(transaction_id="null").delete()
