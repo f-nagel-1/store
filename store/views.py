@@ -8,6 +8,27 @@ import random
 
 def store(request):
      #check1 if user is logged in
+     # if request.user.is_authenticated:
+     #      customer = request.user.customer
+     #      # order, created = Order.objects.get_or_create(customer=customer, complete=False)
+     #      order = Order.objects.get(customer=customer, complete=False)
+     #      #parent is order and orderitem is child and we grab all children with _set.all
+     #      items = order.orderitem_set.all()
+     #      cartItems = order.get_cart_items
+     # else:
+     #      items = []
+     #      order = {'get_cart_total':0, 'get_cart_items':0}
+     #      cartItems = order['get_cart_items']
+
+     # products = Product.objects.all()
+     # context = {'products':products, 'cartItems':cartItems}
+     # return render(request, 'store/store.html', context)
+     return render(request, 'store/store.html')
+
+
+
+def books(request):
+     #check1 if user is logged in
      if request.user.is_authenticated:
           customer = request.user.customer
           #creating object or querying one with values customer and order status is open
@@ -15,21 +36,24 @@ def store(request):
           #parent is order and orderitem is child and we grab all children with _set.all
           items = order.orderitem_set.all()
           cartItems = order.get_cart_items
-     else:
-          items = []
-          order = {'get_cart_total':0, 'get_cart_items':0}
-          cartItems = order['get_cart_items']
+     # else:
+     #      items = []
+     #      order = {'get_cart_total':0, 'get_cart_items':0}
+     #      cartItems = order['get_cart_items']
 
      products = Product.objects.all()
      context = {'products':products, 'cartItems':cartItems}
-     return render(request, 'store/store.html', context)
+     return render(request, 'store/books.html', context)
+
+
+
 
 def cart(request):
      #check1 if user is logged in
      if request.user.is_authenticated:
           customer = request.user.customer
-          #creating object or querying one with values customer and order status is open
-          order, created = Order.objects.get_or_create(customer=customer, complete=False)
+          # order, created = Order.objects.get_or_create(customer=customer, complete=False)
+          order = Order.objects.get(customer=customer, complete=False)
           #parent is order and orderitem is child and we grab all children with _set.all
           items = order.orderitem_set.all()
           cartItems = order.get_cart_items
@@ -48,7 +72,8 @@ def checkout(request):
      if request.user.is_authenticated:
           customer = request.user.customer
           #creating object or querying one with values customer and order status is open
-          order, created = Order.objects.get_or_create(customer=customer, complete=False)
+          # order, created = Order.objects.get_or_create(customer=customer, complete=False)
+          order = Order.objects.get(customer=customer, complete=False)
           #parent is order and orderitem is child and we grab all children with _set.all
           items = order.orderitem_set.all()
           cartItems = order.get_cart_items
@@ -88,24 +113,6 @@ def updateItem(request):
 	return JsonResponse('Item was updated', safe=False)
 
 
-def books(request):
-     #check1 if user is logged in
-     if request.user.is_authenticated:
-          customer = request.user.customer
-          #creating object or querying one with values customer and order status is open
-          order, created = Order.objects.get_or_create(customer=customer, complete=False)
-          #parent is order and orderitem is child and we grab all children with _set.all
-          items = order.orderitem_set.all()
-          cartItems = order.get_cart_items
-     else:
-          items = []
-          order = {'get_cart_total':0, 'get_cart_items':0}
-          cartItems = order['get_cart_items']
-
-     products = Product.objects.all()
-     context = {'products':products, 'cartItems':cartItems}
-     return render(request, 'store/books.html', context)
-
 
 def product(request, obj_id):
     product = Product.objects.get(id=obj_id)
@@ -137,11 +144,20 @@ def success(request):
                trackno = str(random.randint(11111,99999))
           neworder.transaction_id = trackno
 
+          Order.objects.filter(transaction_id="null").delete()
           neworder.save()
 
-          # Order.objects.filter(customer=request.user.customer).delete()
+          # Order.objects.filter(transaction_id="null").delete()
          
      return render(request, 'store/checkout/success.html')
+
+
+
+# def clear(request):
+#     cart = Cart(request.session)
+#     product = Product.objects.all()
+#     cart.clear()
+#     return render(request, 'store/books.html')
 
 
 # def place(request):
